@@ -17,11 +17,11 @@ export default {
     const vnodes = []
 
     if (icon) {
-      vnodes.push(<i class="el-icon-share"></i>)
+      vnodes.push(<i class='el-icon-share'></i>)
     }
 
     if (title) {
-      vnodes.push(<span slot='title'>{(title)}</span>)
+      vnodes.push(<span slot='title'>{title}</span>)
     }
     return vnodes
   }

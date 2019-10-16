@@ -1,5 +1,7 @@
 <template>
-  <div class="Sidebar">
+  <div :class="{'has-logo':true}">
+    <logo />
+
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
@@ -23,12 +25,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
 
 export default {
   components: {
-    SidebarItem
+    SidebarItem,
+    Logo
   },
   computed: {
     ...mapGetters(['permission_routes']),

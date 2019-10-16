@@ -22,6 +22,7 @@ export const constantRoutes = [
     name: 'Layout',
     component: Layout,
     redirect: '/test1',
+    meta: { title: 'head1', icon: 'link' },
     children: [
       {
         path: 'test1',

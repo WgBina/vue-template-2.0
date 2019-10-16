@@ -1,8 +1,9 @@
-// @import './variables.scss';
+@import './variables.scss';
 // @import './mixin.scss';
 // @import './transition.scss';
 // @import './element-ui.scss';
 @import './sidebar.scss';
+@import './navbar';
 // @import './btn.scss';
 
 body {
@@ -24,6 +25,12 @@ html {
 
 #app {
   height: 100%;
+}
+
+.app-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 *,

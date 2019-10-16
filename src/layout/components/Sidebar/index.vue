@@ -1,7 +1,15 @@
 <template>
   <div class="Sidebar">
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu :default-active="activeMenu" :unique-opened="false" mode="vertical">
+      <el-menu
+        :default-active="activeMenu"
+        :background-color="variables.menuBg"
+        :text-color="variables.menuText"
+        :active-text-color="variables.menuActiveText"
+        :unique-opened="false"
+        :collapse-transition="false"
+        mode="vertical"
+      >
         <sidebar-item
           v-for="route in permission_routes"
           :key="route.path"
@@ -16,6 +24,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import SidebarItem from './SidebarItem'
+import variables from '@/styles/variables.scss'
 
 export default {
   components: {
@@ -34,6 +43,9 @@ export default {
         return meta.activeMenu
       }
       return path
+    },
+    variables() {
+      return variables
     }
   },
   created() {

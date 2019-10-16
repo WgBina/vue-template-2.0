@@ -5,12 +5,19 @@
 </template>
 
 <script>
-import { setToken } from '@/utils/auth'
+import { setToken, setRoles } from '@/utils/auth'
 export default {
   name: 'Login',
+
+  data() {
+    return {}
+  },
+
   methods: {
     loginHandle() {
       setToken(['admin'])
+      setRoles(['null'])
+      // this.$router.push({ path: this.redirect || '/' })
       this.$router.push('/')
     }
   }

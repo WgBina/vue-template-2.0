@@ -1,4 +1,10 @@
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import {
+  getToken,
+  setToken,
+  removeToken,
+  getRoles,
+  removeRoles
+} from '@/utils/auth'
 import { resetRouter } from '@/router'
 
 const state = {
@@ -29,15 +35,21 @@ const actions = {
     })
   },
   // get user info
-  getInfo({ commit }, roles) {
-    commit('SET_ROLES', roles)
+  getInfo({ commit }) {
+    return new Promise((resolve) => {
+      const roles = JSON.parse(getRoles())
+      commit('SET_ROLES', roles)
+      resolve(roles)
+    })
   },
   // user logout
-  logout({ commit }) {
+  logOut({ commit }) {
     return new Promise((resolve, reject) => {
       commit('SET_TOKEN', '')
       commit('SET_ROLES', [])
       removeToken()
+      removeRoles()
+
       resetRouter()
       resolve()
     })

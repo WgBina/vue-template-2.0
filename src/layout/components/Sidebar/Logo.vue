@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-logo-container">
     <div>I'm Logo</div>
-    <img src="" alt="">
+    <img src alt />
   </div>
 </template>
 

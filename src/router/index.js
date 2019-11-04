@@ -3,7 +3,9 @@ import Router from 'vue-router'
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location, onResolve, onReject) {
-  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  if (onResolve || onReject) {
+    return originalPush.call(this, location, onResolve, onReject)
+  }
   return originalPush.call(this, location).catch(err => err)
 }
 
@@ -34,7 +36,16 @@ export const constantRoutes = [
         path: 'test1',
         component: () => import('@/views/test1'),
         name: 'test1',
-        meta: { title: 'test1', icon: 'link' }
+        meta: { title: 'test1', icon: 'link' },
+        children: [
+          {
+            path: 'test3',
+            component: () => import('@/views/test2'),
+            name: 'test3',
+            meta: { title: 'test3', icon: 'link', activeMenu: '/test1' },
+            hidden: true
+          }
+        ]
       },
       {
         path: 'test2',

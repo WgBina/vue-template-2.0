@@ -42,6 +42,13 @@ html {
   padding: 0px !important;
 }
 
+.absoluteCenter{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
 .padding-content {
   padding: 4px 0;
 }

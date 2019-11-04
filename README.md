@@ -10,8 +10,8 @@
 ##  lodash
 ##  Element  --
 ##  nprogress --
-
-
+##  qs
+##  vueScroll
 
 ## Build Setup
 

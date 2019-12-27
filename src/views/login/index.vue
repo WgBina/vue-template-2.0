@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { setToken, setRoles } from '@/utils/auth'
+import { setToken } from '@/utils/auth'
 export default {
   name: 'Login',
 
@@ -36,8 +36,9 @@ export default {
 
   methods: {
     loginHandle() {
+      // 为了跳进perisimmion中的最外层判断
       setToken(['admin'])
-      setRoles(['null'])
+
       this.$router.push('/')
     }
   }

@@ -2,7 +2,7 @@ import {
   getToken,
   setToken,
   removeToken,
-  getRoles,
+  // getRoles,
   removeRoles
 } from '@/utils/auth'
 import { resetRouter } from '@/router'
@@ -26,6 +26,8 @@ const mutations = {
 
 const actions = {
   // user login
+
+  // 先登录换取token,这里直接在登录中手动设置了token值
   login({ commit }, token) {
     console.log(token)
     return new Promise((resolve, reject) => {
@@ -35,13 +37,16 @@ const actions = {
     })
   },
   // get user info
+
+  //  用token换取用户信息, 这里直接派发
   getInfo({ commit }) {
     return new Promise((resolve) => {
-      const roles = JSON.parse(getRoles())
+      const roles = ['admin']
       commit('SET_ROLES', roles)
       resolve(roles)
     })
   },
+
   // user logout
   logOut({ commit }) {
     return new Promise((resolve, reject) => {

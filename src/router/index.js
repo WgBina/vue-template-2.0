@@ -36,7 +36,8 @@ export const constantRoutes = [
         path: 'test1',
         component: () => import('@/views/test1'),
         name: 'test1',
-        meta: { title: 'test1', icon: 'link' },
+        meta: { title: 'test1', icon: 'link', roles: ['admin'] },
+
         children: [
           {
             path: 'test3',
@@ -51,7 +52,7 @@ export const constantRoutes = [
         path: 'test2',
         component: () => import('@/views/test2'),
         name: 'test2',
-        meta: { title: 'test2', icon: 'link' }
+        meta: { title: 'test2', icon: 'link', roles: ['admin'] }
       }
     ]
   }

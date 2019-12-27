@@ -7,16 +7,16 @@ import { getToken } from '@/utils/auth' // get token from cookie
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login'] // no redirect whitelist
+const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
-  console.log()
   // start progress bar
   NProgress.start()
 
   // determine whether the user has logged in
   const hasToken = getToken()
-  console.log()
+
+  // 直接在登录页点击事件中派发假的token
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
@@ -31,18 +31,17 @@ router.beforeEach(async(to, from, next) => {
         try {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
-          // const { roles } = await store.dispatch('user/login')
-          // from cookies
-          const roles = await store.dispatch('user/getInfo', ['admin'])
+          // 异步派发获取
+          // const  {roles}  = await store.dispatch('user/getInfo')
+
+          const roles = await store.dispatch('user/getInfo')
 
           // generate accessible routes map based on roles
-          const accessRoutes = await store.dispatch(
-            'permission/generateRoutes',
-            roles
-          )
+          const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
 
           // dynamically add accessible routes
           router.addRoutes(accessRoutes)
+
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true })
@@ -57,6 +56,7 @@ router.beforeEach(async(to, from, next) => {
     }
   } else {
     /* has no token*/
+
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
       next()

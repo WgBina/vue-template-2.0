@@ -29,7 +29,7 @@ export const constantRoutes = [
     path: '/',
     name: 'Layout',
     component: Layout,
-    redirect: '/test1',
+    redirect: '/test',
     meta: { title: 'head1', icon: 'link' },
     children: [
       {
@@ -44,7 +44,17 @@ export const constantRoutes = [
             component: () => import('@/views/test2'),
             name: 'test3',
             meta: { title: 'test3', icon: 'link', activeMenu: '/test1' },
-            hidden: true
+            hidden: false,
+            children: [
+              {
+                path: 'test1',
+                component: () => import('@/views/test1'),
+                name: 'test1',
+                meta: { title: 'test1', icon: 'link', roles: ['admin'] }
+              }
+
+            ]
+
           }
         ]
       },

@@ -29,33 +29,30 @@ export const constantRoutes = [
     path: '/',
     name: 'Layout',
     component: Layout,
-    redirect: '/test1',
+    redirect: '/test',
     meta: { title: 'head1', icon: 'link' },
     children: [
       {
-        path: 'test1',
+        path: 'test',
         component: () => import('@/views/test1'),
-        name: 'test1',
-        meta: { title: 'test1', icon: 'link', roles: ['admin'] },
+        name: 'test',
+        meta: { title: 'test', icon: 'link', roles: ['admin'] },
 
         children: [
+          {
+            path: 'test1',
+            component: () => import('@/views/test2'),
+            name: 'test1',
+            meta: { title: 'test1', icon: 'link', activeMenu: '/test/test1' }
+          },
           {
             path: 'test3',
             component: () => import('@/views/test2'),
             name: 'test3',
-            meta: { title: 'test3', icon: 'link', activeMenu: '/test1' },
-            hidden: false,
-            children: [
-              {
-                path: 'test1',
-                component: () => import('@/views/test1'),
-                name: 'test1',
-                meta: { title: 'test1', icon: 'link', roles: ['admin'] }
-              }
-
-            ]
-
+            meta: { title: 'test3', icon: 'link', activeMenu: '/test/test1' },
+            hidden: true
           }
+
         ]
       },
       {

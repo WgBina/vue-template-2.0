@@ -29,7 +29,7 @@ export const constantRoutes = [
     path: '/',
     name: 'Layout',
     component: Layout,
-    redirect: '/test',
+    redirect: '/test1',
     meta: { title: 'head1', icon: 'link' },
     children: [
       {
